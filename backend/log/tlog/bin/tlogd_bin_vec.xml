@@ -1,0 +1,113 @@
+<tlogdconf version="11">
+    <Threading>0</Threading>
+    <EnableViewer>0</EnableViewer>
+    <MaxFD>10240</MaxFD>
+    <MaxScanOnce>0</MaxScanOnce>
+    <ScanRatioOnce>100</ScanRatioOnce>
+    <ScanRatio>0</ScanRatio>
+    <TDRList type="TDRList">
+        <Count>1</Count>
+        <TDRs type="TDR">
+            <Name>BinTDR</Name>
+            <Path>./tlogddef.tdr</Path>
+        </TDRs>
+    </TDRList>
+    <PDUList type="PDUList">
+        <Count>1</Count>
+        <PDUs type="PDU">
+            <Name>BinPDU</Name>
+            <Size>0</Size>
+            <LenParsertype>PDULENPARSERID_BY_TDR</LenParsertype>
+            <LenParser type="PDULenParser">
+                <TDRParser type="PDULenTDRParser">
+                    <TDR>BinTDR</TDR>
+                    <Pkg>TLOGBinPkg</Pkg>
+                    <HeadLen>Head.HeadLen</HeadLen>
+                    <BodyLen>Head.BodyLen</BodyLen>
+                    <MsgID>Head.ID</MsgID>
+                    <MsgCls>Head.Cls</MsgCls>
+                </TDRParser>
+            </LenParser>
+        </PDUs>
+    </PDUList>
+    <ListenerList type="ListenerList">
+        <Count>1</Count>
+        <Listeners type="Listener">
+            <Name>default</Name>
+            <Url>udp://0.0.0.0:10001</Url>
+            <SendBuff>0</SendBuff>
+            <RecvBuff>32768</RecvBuff>
+            <MaxIdle>0</MaxIdle>
+            <LogBin>0</LogBin>
+            <TransLimit type="TransLimit">
+                <PkgHiMark>0</PkgHiMark>
+                <PkgLoMark>0</PkgLoMark>
+                <Period>0</Period>
+                <Decay>0</Decay>
+            </TransLimit>
+            <ConnLimit type="ConnLimit">
+                <Backlog>0</Backlog>
+                <MaxConn>0</MaxConn>
+                <Permit>0</Permit>
+                <HighMark>0</HighMark>
+                <LowMark>0</LowMark>
+                <Period>0</Period>
+            </ConnLimit>
+            <FailWait>0</FailWait>
+            <FailOp>0</FailOp>
+        </Listeners>
+    </ListenerList>
+    <SerializerList type="SerializerList">
+        <Count>1</Count>
+        <Serializers type="Serializer">
+            <Name>default</Name>
+            <Logger type="TLOGDevAny">
+                <Type>VEC</Type>
+                <Device>
+                    <Vec>
+                        <Count>1</Count>
+                        <Elements>
+                            <ID>0</ID>
+                            <Ctrl>0</Ctrl>
+                            <FilterVec>
+                                <Count>1</Count>
+                                <Filters>
+                                    <IDFilter>
+                                    </IDFilter>
+                                    <ClsFilter>
+                                    </ClsFilter>
+                                </Filters>
+                            </FilterVec>
+                            <Type>FILE</Type>
+                            <Device>
+                                <File>
+                                    <Pattern>../log/65535_%Y%m%d_%H00.log</Pattern>
+                                    <BuffSize>1024000</BuffSize>
+                                    <SizeLimit>1024000000</SizeLimit>
+                                    <Precision>60</Precision>
+                                    <MaxRotate>10</MaxRotate>
+                                    <SyncTime>0</SyncTime>
+                                    <NoFindLatest>0</NoFindLatest>
+                                </File>
+                            </Device>
+                        </Elements>
+                    </Vec>
+                </Device>
+            </Logger>
+            <DropHead>1</DropHead>
+        </Serializers>
+    </SerializerList>
+    <NetTransList type="NetTransList">
+        <Count>1</Count>
+        <NetTrans type="NetTrans">
+            <Name>default</Name>
+            <LoadRatio>0</LoadRatio>
+            <MaxFD>10240</MaxFD>
+            <UseTimeStamp>0</UseTimeStamp>
+            <Res>0</Res>
+            <PDU>BinPDU</PDU>
+            <Listener>default</Listener>
+            <Serializer>default</Serializer>
+        </NetTrans>
+    </NetTransList>
+</tlogdconf>

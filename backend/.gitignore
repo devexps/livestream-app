@@ -35,7 +35,7 @@
 .idea
 
 # Dev
-pkg/*
+*/cpp-core
 **/*.log
 **/*.binlog.*
 **/*.stat.*

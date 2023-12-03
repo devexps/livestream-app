@@ -1,0 +1,27 @@
+version: '3'
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  mysql:
+    image: bitnami/mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=ktx
+      - MYSQL_PASSWORD=ktx@123
+      - MYSQL_DATABASE=db_ktx_common
+      - MYSQL_AUTHENTICATION_PLUGIN=mysql_native_password
+    volumes:
+      - /tmp/mysql/data:/bitnami/mysql/data
+      - ../../cache/ttc_tb_user/db/user.sql:/docker-entrypoint-initdb.d/user.sql
+    networks:
+      - app-tier
+
+  ttc_tb_user:
+    image: ktx/ttc_tb_user
+    networks:
+      - app-tier

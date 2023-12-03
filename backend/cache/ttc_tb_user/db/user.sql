@@ -1,0 +1,1 @@
+create table user_0(uin int unsigned primary key, nick_name varchar(100), sex int unsigned, head_logo varchar(255), head_timestamp int unsigned);

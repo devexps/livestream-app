@@ -25,3 +25,8 @@ services:
     image: ktx/ttc_tb_user
     networks:
       - app-tier
+
+  tlog:
+    image: ktx/tlog
+    networks:
+      - app-tier

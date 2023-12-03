@@ -3,17 +3,22 @@
 docker-compose:
 	@cd docker/compose && docker-compose up -d
 
-# build docker cache image
-docker-cache:
+# build docker image
+docker-build:
 	@docker build \
     		-t ktx/$(APP_RELATIVE_PATH) \
-        	-f ./docker/cache/Dockerfile \
+        	-f ./docker/$(PARENT_RELATIVE_PATH)/Dockerfile \
+        	--build-arg PARENT_RELATIVE_PATH=$(PARENT_RELATIVE_PATH) \
         	--build-arg APP_RELATIVE_PATH=$(APP_RELATIVE_PATH) \
-        	./cache
+        	.
 
 # build docker cache image: ttc_tb_user
 docker-ttc-tb-user:
-	@make docker-cache APP_RELATIVE_PATH=ttc_tb_user
+	@make docker-build PARENT_RELATIVE_PATH=cache APP_RELATIVE_PATH=ttc_tb_user
+
+# build docker log image: tlog
+docker-tlog:
+	@make docker-build PARENT_RELATIVE_PATH=log APP_RELATIVE_PATH=tlog
 
 # show help
 help:

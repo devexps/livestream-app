@@ -33,9 +33,3 @@
 
 # IDE
 .idea
-
-# Dev
-*/pkg/*
-**/*.log
-**/*.binlog.*
-**/ttc.stat.*

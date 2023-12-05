@@ -33,3 +33,6 @@
 
 # IDE
 .idea
+
+# Environment
+.DS_Store

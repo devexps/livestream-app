@@ -1,0 +1,17 @@
+CC = g++
+CXX = g++
+
+INC =
+LIB =
+
+CFLAGS = -g -std=gnu++0x
+
+SVR = .
+SVR_NAME = troomsvr
+SVR_BIN_DIR = $(SVR)/runtime/$(SVR_NAME)
+
+PKG = ../../pkg
+PUBLIC = $(PKG)/cpp-core/public
+PUBLIC_INC = $(PUBLIC)/include
+PUBLIC_LIB = $(PUBLIC)/lib
+TFC = $(PUBLIC_INC)/tfc

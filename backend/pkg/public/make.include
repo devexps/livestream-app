@@ -1,3 +1,0 @@
-CC	    = gcc
-CXX	    = g++
-CFLAGS	= -g -std=gnu++0x
